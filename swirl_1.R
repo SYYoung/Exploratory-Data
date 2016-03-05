@@ -58,3 +58,12 @@ swirl_1_4 <- function() {
     
     
 }
+
+swirl_1_5 <- function() {
+    # base plotting system
+    range(airquality$Ozone, na.rm=TRUE)
+    boxplot(Ozone~Month,airquality,xlab="Month",ylab="Ozone (ppb)",
+            col.axis="blue",col.lab="red")
+    
+    
+}
