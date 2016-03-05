@@ -42,3 +42,19 @@ swirl_1_3 <- function() {
     dev.off()
     
 }
+
+swirl_1_4 <- function() {
+    with(cars, plot(speed,dist))
+    text(mean(cars$speed), max(cars$dist), "SWIRL rules!")
+    
+    table(state$region)
+    
+    # lattice package: use xyplot
+    xyplot(Life.Exp~Income|region, data=state, layout=c(4,1))
+    
+    # ggplot2 package: qplot:
+    table(mpg$model)
+    qplot(displ, hwy, data=mpg)
+    
+    
+}
