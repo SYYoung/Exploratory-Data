@@ -64,3 +64,33 @@ week1_2_base_2a <- function() {
         plot(Solar.R, Ozone, main="Ozone and Solar Radiation")
     })
 }
+
+week1_2_base_demo <- function() {
+    x <- rnorm(100)
+    hist(x)
+    
+    # add one group of data at one time
+    x <- rnorm(100)
+    y <- x + rnorm(100)
+    g <- gl(2, 50, labels=c("Male","Female"))
+    plot(x,y,type="n")
+    points(x[g=="Male"], y[g=="Male"], col="green")
+    points(x[g=="Female"],y[g=="Female"], col="blue")
+    
+}
+
+week1_2_graphic_1 <- function() {
+    # file devices
+    pdf(file="myplot.pdf")
+    with(faithful, plot(eruptions, waiting))
+    title(main="Old faithful Geyser data")
+    dev.off() ## close the PDF file device
+}
+
+week1_2_graphic_2 <- function() {
+    library(datasets)
+    with(faithful, plot(eruptions, waiting))
+    title(main="Old Faithful Geyser data")
+    dev.copy(png, file="geyserplot.pny")
+    dev.off()
+}
