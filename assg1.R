@@ -16,3 +16,11 @@ assg1 <- function() {
     
     data1
 }
+
+plot1 <- function() {
+    my_data <- assg1()
+    png(filename="plog1.png", width=480, height=480)
+    hist(my_data$Global_active_power, xlab="Global Active Power(kilowatts)", 
+         col="red", main="Global Active Power")
+    dev.off()
+}
