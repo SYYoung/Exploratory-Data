@@ -1,4 +1,4 @@
-assg1 <- function() {
+read_assg1_data <- function() {
     # read set data: only read from 2007-02-01 and 2007-02-02 so that the 
     # read in data size will not be too huge
     feature_name <- c("Date","Time","Global_active_power","Global_reactive_power",
@@ -18,17 +18,28 @@ assg1 <- function() {
 }
 
 plot1 <- function() {
-    my_data <- assg1()
-    png(filename="plog1.png", width=480, height=480)
+    my_data <- read_assg1_data()
+    png(filename="plot1.png", width=480, height=480)
     hist(my_data$Global_active_power, xlab="Global Active Power(kilowatts)", 
          col="red", main="Global Active Power")
     dev.off()
 }
 
 plot2 <- function() {
-    my_data <- assg1()
+    my_data <- read_assg1_data()
     png(filename="plot2.png",width=480,height=480)
     with(my_data, plot(x=Date_Time, y=Global_active_power,type="l",
                        ylab="Global Active Power(kilowatts)")) 
     dev.off()
+}
+
+plot3 <- function() {
+    my_data <- read_assg1_data()
+    #png(filename="plot3.png", width=480, height=480)
+    plot(my_data$Date_Time, my_data$Sub_metering_1,type="n")
+    
+    points(my_data$Date_time, my_data$Sub_metering_1, type='l')
+    points(my_data$Date_time, my_data$Sub_metering_2, type='l', col="red")
+    points(my_data$Date_time, my_data$Sub_metering_3, type='l',col="blue")
+    
 }
