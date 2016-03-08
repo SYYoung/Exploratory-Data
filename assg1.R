@@ -35,11 +35,11 @@ plot2 <- function() {
 
 plot3 <- function() {
     my_data <- read_assg1_data()
-    #png(filename="plot3.png", width=480, height=480)
-    plot(my_data$Date_Time, my_data$Sub_metering_1,type="n")
+    png(filename="plot3.png", width=480, height=480)
+    plot(range(my_data$Date_Time),range(my_data$Sub_metering_1),type="n")
+    points(my_data$Date_Time,my_data$Sub_metering_1, type="l")
+    points(my_data$Date_Time,my_data$Sub_metering_2, type="l", col="red")
+    points(my_data$Date_Time,my_data$Sub_metering_3, type="l",col="blue")
     
-    points(my_data$Date_time, my_data$Sub_metering_1, type='l')
-    points(my_data$Date_time, my_data$Sub_metering_2, type='l', col="red")
-    points(my_data$Date_time, my_data$Sub_metering_3, type='l',col="blue")
-    
+    dev.off()
 }
