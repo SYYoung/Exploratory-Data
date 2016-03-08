@@ -36,10 +36,14 @@ plot2 <- function() {
 plot3 <- function() {
     my_data <- read_assg1_data()
     png(filename="plot3.png", width=480, height=480)
-    plot(range(my_data$Date_Time),range(my_data$Sub_metering_1),type="n")
+    plot(range(my_data$Date_Time),range(my_data$Sub_metering_1),
+         xlab=" ", ylab="Energy sub metering", type="n")
     points(my_data$Date_Time,my_data$Sub_metering_1, type="l")
     points(my_data$Date_Time,my_data$Sub_metering_2, type="l", col="red")
     points(my_data$Date_Time,my_data$Sub_metering_3, type="l",col="blue")
+    
+    legend("topright", col=c("grey","red", "blue"), pch="----",
+           legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
     
     dev.off()
 }
