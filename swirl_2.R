@@ -83,3 +83,28 @@ swirl_2_ggplot_2 <- function() {
     
     
 }
+
+swirl_2_ggplot_extra <- funcion() {
+    qplot(price, data=diamonds, binwidth=range(diamonds$price)/30)
+    qplot(price, data=diamonds, binwidth=range(diamonds$price)/30,fill=cut)
+    qplot(price, data=diamonds, geom="density")
+    qplot(price, data=diamonds, geom="density", color=cut)
+    
+    qplot(carat,price,data=diamonds)
+    qplot(carat,price,data=diamonds,color=cut)
+    qplot(carat,price,data=diamonds,color=cut) + geom_smooth(method="lm")
+    qplot(carat,price,data=diamonds,color=cut,facets=.~cut) +
+        geom_smooth(method="lm")
+    
+    g <- ggplot(data=diamonds,aes(depth,price))
+    cutpoints <- quantile(diamonds$carat, seq(0,1,length=4), na.rm=TRUE)
+    diamonds$car2 <- cut(diaomonds$carat, cutpoints)
+    g <- ggplot(data=diamonds,aes(depth,price))
+    g+geom_point(alpha=1/3) + facet_grid(cut~car2)
+    g + geom_point(alpha=1/3) + facet_grid(cut~car2) +
+        geom_smooth(method="lm",size=3,color="pink")
+    # boxplot
+    ggplot(data=diamonds,aes(carat,price)) + geom_boxplot() +
+        facet_grid(.~cut)
+    
+}
