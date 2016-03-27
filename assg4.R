@@ -34,15 +34,16 @@ assg4_1 <- function() {
     # 3. question 3:  
     # divide pm25_bal into 4 tables for each type value
     result_data <- data.frame()
-    names(result_data) <- c("type","Emissions","year")
     type_level <- levels(factor(pm25_bal$type))
     for (i in seq_len(length(type_level))) {
         type_list <- subset(pm25_bal, type==type_level[i])
         sum_i <- with(type_list, tapply(Emissions, year, sum, na.rm=TRUE))
         temp <- data.frame(unclass(type_level[i]), sum_i, names(sum_i))
         names(temp) <- c("type","Emissions","year")
-        result_data <- rbind(result_data, temp)
+        result_data <- rbind(temp, result_data)
     }
+    print(result_data)
+    library(ggplot2)
     qplot(year,Emissions,data=result_data,facets=.~type)
     
 }
