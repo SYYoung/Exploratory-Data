@@ -57,5 +57,8 @@ assg4_1 <- function() {
     coal_sum <- with(coal_data, tapply(Emissions, year, sum, na.rm=TRUE))
     yr_range <- as.numeric(names(coal_sum))
     plot(yr_range, log10(coal_sum), type='l')
+    png(filename="assg4_plot4.png",width=480,height=480)
+    plot(yr_range, log10(coal_sum), type='l')
+    dev.off()
     
 }
