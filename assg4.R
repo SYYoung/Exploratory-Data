@@ -42,8 +42,20 @@ assg4_1 <- function() {
         names(temp) <- c("type","Emissions","year")
         result_data <- rbind(temp, result_data)
     }
-    print(result_data)
     library(ggplot2)
     qplot(year,Emissions,data=result_data,facets=.~type)
+    png(filename="assg4_plot3.png",width=480, height=480)
+    qplot(year,Emissions, data=result_data,facets=.~type)
+    dev.off()
+    
+    # 4. question 4: check across US, the trend of emissions from coal
+    # combustion-related sources
+    # get the subset which EI.Sector related to coal
+    coal_code <- subset(scc, grepl("Coal",EI.Sector))
+    coal_scc <- coal_code$SCC
+    coal_data <- subset(pm25, SCC %in% coal_scc)
+    coal_sum <- with(coal_data, tapply(Emissions, year, sum, na.rm=TRUE))
+    yr_range <- as.numeric(names(coal_sum))
+    plot(yr_range, log10(coal_sum), type='l')
     
 }
